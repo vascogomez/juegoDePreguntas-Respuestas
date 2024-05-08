@@ -3,63 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ana María, Camila y Emanuel">
+    <meta name="description" content="Juego de trivia de peliculas">
+    <meta name="keywords" content="trivia, preguntas, juego, peliculas, cine">
+    <link rel="shortcut icon" href="/img/palomitas-de-maiz.png" />
     <title>Juego Trivia de peliculas</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     
-
     <header>
-        <h1>Juego Triviacine </h1>
+        <h1>Trivia Cine</h1>
     </header>
 
     <main>
 
-        <div class="contenedorGeneral">
-
-            <div class="pregunta"> pregunta</div>
-            
-            
-            <div class="btnContenedor">
-                <button class="btn" id="btn1">opcion1</button>
-                <button class="btn" id="btn2">opcion2</button>
-                <button class="btn" id="btn3">opcion3</button>
-                <button class="btn" id="btn4">opcion4</button>
-            </div>
-            
-            <div>
-                <button class="btnReinicio" id="btnReinicio">Restart</button>
-            </div>
-        
+        <div id="question-container">
+            <h1 id="question"></h1>
+            <ul id="answers"></ul>
+            <button id="reset-btn">Reiniciar</button>
         </div>
-
-
-
+    
+        <div id="result-container" style="display: none;">
+            <h2>Your Score:</h2>
+            <p id="score"></p>
+        </div>
+        </div>
 
     </main>
 
-
-    
-    
     
     <footer></footer>
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-    
 
 
     <script src="./js/scripts.js"></script>
