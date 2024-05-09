@@ -6,7 +6,7 @@
 }
 
 body {
-   background-color: darkslateblue;
+   background-color: rgb(0, 0, 0);
    text-align: center; 
    font-family: 'Calibri, sans-serif';
 }
@@ -15,10 +15,12 @@ body {
     font-family: 'cinema_st';
     src: url(/fuentes.css/cinema_st.ttf);
 }
-
+header{
+    background-color: rgb(238, 41, 41);
+}
 h1{
     /*background-color: rgba(9, 10, 0, 0.37);*/
-    color: rgb(161, 214, 14);
+    color: rgb(26, 25, 24);
     font-family: cinema_st; 
     font-size: 60px;
     margin: 10px;
@@ -32,7 +34,7 @@ h1{
     border-radius: 5%;
 
     width: 99vw;
-    height: 90vh;
+    height: 60vh;
     
     justify-content: center;
     align-items: center;
@@ -74,14 +76,13 @@ h1{
   
 
 #reset-btn {
-    margin-top: px;
+    margin-top: 15px;
     padding: 10px 20px;
-    background-color: #470cb6;
-    color: white;
+    background-color: #ffe600;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-
 }
 
 #result-container {
