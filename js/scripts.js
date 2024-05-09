@@ -41,10 +41,10 @@ const traerPreguntas = async () => {
 
 const cadaPregunta = document.getElementById('question');
 const todasLasRespuestas = document.getElementById('answers');
-const btnReiniciar = document.getElementById('reset-btn');
 const resultContainer = document.getElementById('result-container');
 const scoreElement = document.getElementById('score');
 const contendorPreguntas = document.getElementById('question-container');
+const btnReiniciar = document.getElementById('reset-btn');
 
 /**
  * ##################
@@ -59,7 +59,7 @@ const funcionPrincipal = async () => {
   
   preguntas = await traerPreguntas(); // Traemos preguntas desde el archivo
 
-  preguntas = preguntas.sort(() => Math.random());  //ordena aleatoriamente las preguntas
+  preguntas = preguntas.sort(() => 0.5 - Math.random());  //ordena aleatoriamente las preguntas
 
   const preguntaActual = preguntas[indiceDePreguntas];
   cadaPregunta.textContent = preguntaActual.question;
@@ -131,7 +131,6 @@ const mostrarResultado = () => {
   
   cadaPregunta.style.display = 'none';
   todasLasRespuestas.style.display = 'none';
-  btnReiniciar.style.display = 'none'; 
   contendorPreguntas.style.display = 'none';
   resultContainer.style.display = 'block';
   scoreElement.textContent = `${score}/${LIMITE}`; 

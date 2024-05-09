@@ -81,6 +81,7 @@ h1{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 #result-container {
@@ -92,9 +93,7 @@ h1{
     width: 99vw;
     height: 90vh;
     background-size: cover;
-
-    
-    
+    display: none;
 }
 
 footer{
