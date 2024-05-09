@@ -1,65 +1,145 @@
-"use strict";
+'use strict';
+
+// limitamos la cantidad de preguntas para ver como se ejecuta el juego
+const LIMITE = 5;
+
+// definimos las variables
+let preguntas;
+let indiceDePreguntas = 0; //contenedor de preguntas almacenadas
+let score = 0;
+
+ 
 
 /**
  * ##################
  * ##   TAREAS     ##
  * ##################
  * La aplicación debe leer el JSON
- */
+*/
 
 
+//funcion para llamar las preguntas del Json
+const traerPreguntas = async () => { 
+  const arrayPreguntas = await fetch(`quiz.json`);
+  const datosDelJson = await arrayPreguntas.json();
 
-const questions = 'quiz.json';
+  if (datosDelJson.length === 0) {
+    throw new Error('Question file is empty');
+  }
+  
+  return datosDelJson;
+  
+};
+ 
 
-fetch(questions)
-    .then(response => {
-        if(!response.ok){
-        throw new Error('No se puede cargar el json');
-        }
-    return response.json()
-    })
-    .then(data => {
-        console.log(data);
-    });
-
-
-    /**
+/**
  * ##################
  * ##   TAREAS     ##
  * ##################
  * procesar las preguntas
- */
+*/
 
-const questionElement = document.getElementById('question');
-const answerListElement = document.getElementById('answers');
-const correctAnswer = document.getElementById('correct');
+const cadaPregunta = document.getElementById('question');
+const todasLasRespuestas = document.getElementById('answers');
+const btnReiniciar = document.getElementById('reset-btn');
+const resultContainer = document.getElementById('result-container');
+const scoreElement = document.getElementById('score');
+const contendorPreguntas = document.getElementById('question-container');
 
-  /**
+/**
  * ##################
  * ##   TAREAS     ##
  * ##################
  * mostrar en la pantalla la primera pregunta junto a
-   la lista de respuestas con un botón para seleccionar una
- */
+  la lista de respuestas con un botón para seleccionar una
+*/
     
 
-
+const funcionPrincipal = async () => {
   
+  preguntas = await traerPreguntas(); // Traemos preguntas desde el archivo
+
+  preguntas = preguntas.sort(() => Math.random());  //ordena aleatoriamente las preguntas
+
+  const preguntaActual = preguntas[indiceDePreguntas];
+  cadaPregunta.textContent = preguntaActual.question;
+
+  todasLasRespuestas.innerHTML = '';
+
+  preguntaActual.answers.forEach((respuesta) => {  //funcion para agregar respuestas a la pregunta actual
+    const li = document.createElement('li');
+
+    li.textContent = respuesta;
+    li.classList.add(`button`);
+
+    li.addEventListener(`mouseover`, () => {
+      li.style.color = `violet`;
+      li.style.transform = `scale(1.2)`;
+    });
+
+    li.addEventListener(`mouseout`, () => {
+      li.style.color = `white`;
+      li.style.transform = `scale(1)`;
+    });
+
+
     /**
- * ##################
- * ##   TAREAS     ##
- * ##################
- * Si la respuesta es correcta debe aumentar un contador de aciertos y
-avanzar a la siguiente pregunta. Si es incorrecta simplemente
-avanzar
- */
+     * ##################
+     * ##   TAREAS     ##
+     * ##################
+     * Si la respuesta es correcta debe aumentar un contador de aciertos y
+      avanzar a la siguiente pregunta. Si es incorrecta simplemente
+      avanzar
+    */
+
+    const validarRespuesta = (respuestaSeleccionada, preguntaActual) => {
+    return respuestaSeleccionada === preguntaActual.correct;
+    };
+
+    
+    li.addEventListener('click', () => {
+      console.log(validarRespuesta(respuesta, preguntaActual)); //verificamos respuesta por consola
+
+      const correct = validarRespuesta (respuesta, preguntaActual);
+      li.style.backgroundColor = correct ? `green` : `red`;
+          
+      if (validarRespuesta(respuesta, preguntaActual)) {
+        score++;
+        
+      }
+
+      indiceDePreguntas++;
+
+      // El límite no es una característica requerida, puede no implementarse.
+      indiceDePreguntas < LIMITE ? funcionPrincipal() : mostrarResultado();
+    });
+
+    todasLasRespuestas.appendChild(li);
+  });
+};
 
 
-
-   /**
+/**
  * ##################
  * ##   TAREAS     ##
  * ##################
  * Al finalizar las preguntas debe mostrar la puntuación final.
- */
+*/
     
+
+const mostrarResultado = () => {
+  
+  cadaPregunta.style.display = 'none';
+  todasLasRespuestas.style.display = 'none';
+  btnReiniciar.style.display = 'none'; 
+  contendorPreguntas.style.display = 'none';
+  resultContainer.style.display = 'block';
+  scoreElement.textContent = `${score}/${LIMITE}`; 
+
+};
+
+
+
+btnReiniciar.addEventListener('click', funcionPrincipal);
+
+funcionPrincipal();
