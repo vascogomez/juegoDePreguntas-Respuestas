@@ -76,7 +76,7 @@ h1{
   
 
 #reset-btn {
-    margin-top: 15px;
+    margin-top: 70px;
     padding: 10px 20px;
     background-color: #ffe600;
     color: rgb(0, 0, 0);
@@ -90,14 +90,64 @@ h1{
     color: gold;
     font-size: 30px;
     border: solid;
-    background-image: url('/img/the\ end.jpg');
+    background-image: url('/img/theEnd');
     width: 99vw;
-    height: 90vh;
+    height: 32vh;
     background-size: cover;
     display: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 15%;
+}
+#cuadroScore{
+    text-align: bottom;
+    color: gold;
+    font-size: 20px;
+    background-color: #635749a2;
+    margin-top: 50%;
 }
 
 footer{
     margin: 10px;
+}
+@media screen and (min-width: 800px){
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+  
+@media screen and (min-width: 1000px){
+    header{
+        height: 80px;
+        margin-top: 30px;
+    }
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #result-container{       
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        height: 60vh;
+        width: 55vw;
+        margin-top: 30px;
+        background-image: url('/img/theEnd');
+        background-size: 850px 500px ;
+    }
+    #cuadroScore{
+        text-align: bottom;
+        color: gold;
+        font-size: 20px;
+        background-color: #635749a2;
+        margin-top: 20%;
+    }
+  
 }
   
