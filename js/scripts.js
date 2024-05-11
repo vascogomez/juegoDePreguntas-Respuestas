@@ -55,12 +55,21 @@ const btnReiniciar = document.getElementById('reset-btn');
 */
     
 
-const funcionPrincipal = async () => {
-  
+//  se agregofuncioniniciar el Juego (para que pueda funcionar el boton al terminar el juego )
+const iniciarJuego = async () => {
   preguntas = await traerPreguntas(); // Traemos preguntas desde el archivo
-
   preguntas = preguntas.sort(() => 0.5 - Math.random());  //ordena aleatoriamente las preguntas
+  indiceDePreguntas = 0; // Reiniciamos el índice
+  score = 0; // Reiniciamos la puntuación
+  resultContainer.style.display = 'none'; // Ocultamos el contenedor de resultados
+  cadaPregunta.style.display = 'block'; // Mostramos la pregunta
+  todasLasRespuestas.style.display = 'block'; // Mostramos las respuestas
+  contendorPreguntas.style.display = 'block'; // Mostramos el contenedor de preguntas
+  funcionPrincipal();
+}
+  
 
+const funcionPrincipal = async () => {
   const preguntaActual = preguntas[indiceDePreguntas];
   cadaPregunta.textContent = preguntaActual.question;
 
@@ -138,7 +147,7 @@ const mostrarResultado = () => {
 };
 
 
+//se remplazo funcion principal por inicar Juego 
+ btnReiniciar.addEventListener('click',iniciarJuego);
 
-btnReiniciar.addEventListener('click', funcionPrincipal);
-
-funcionPrincipal();
+iniciarJuego();
