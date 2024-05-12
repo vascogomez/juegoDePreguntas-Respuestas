@@ -83,7 +83,7 @@ const funcionPrincipal = async () => {
 
     li.addEventListener(`mouseover`, () => {
       li.style.color = `violet`;
-      li.style.transform = `scale(1.2)`;
+      li.style.transform = `scale(1.1)`;
     });
 
     li.addEventListener(`mouseout`, () => {
